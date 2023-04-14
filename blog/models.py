@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User #유저 추가
 import os #다운로드 파일 이름 알려줌
 
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Categories'  #복수형
+
 class Post(models.Model):
     title = models.CharField(max_length=30) #제목(글,길이30)
     hook_text = models.CharField(max_length=100, blank=True) #요약문필드
@@ -15,6 +25,8 @@ class Post(models.Model):
     
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) #작성자정보 담름(?) 외래키
 
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL) #카테고리
+    
     
     def __str__(self):
         return f'[{self.pk}]{self.title} :: {self.author}' #pk=번호, 제목 :: 외래키
