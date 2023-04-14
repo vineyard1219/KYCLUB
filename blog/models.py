@@ -3,6 +3,7 @@ import os #다운로드 파일 이름 알려줌
 
 class Post(models.Model):
     title = models.CharField(max_length=30) #제목(글,길이30)
+    hook_text = models.CharField(max_length=100, blank=True) #요약문필드
     content = models.TextField() #내용(글,무제한)
     
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True) #블로그 밑에 이미지/연월일까지 내려간 위치에서 저장/필수항목 아님
