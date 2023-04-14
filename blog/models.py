@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User #유저 추가
 import os #다운로드 파일 이름 알려줌
 
 class Post(models.Model):
@@ -12,8 +13,11 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #작성일시(자동수정)
     updated_at = models.DateTimeField(auto_now=True) #시간 자동 업뎃
     
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) #작성자정보 담름(?) 외래키
+
+    
     def __str__(self):
-        return f'[{self.pk}]{self.title}' #pk=번호, 제목
+        return f'[{self.pk}]{self.title} :: {self.author}' #pk=번호, 제목 :: 외래키
 
     def get_absolute_url(self):
         return f'/blog/{self.pk}/' #글 상페 url 설정
