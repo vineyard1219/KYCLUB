@@ -7,9 +7,9 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #작성일시(자동수정)
     updated_at = models.DateTimeField(auto_now=True) #시간 자동 업뎃
     
-def __str__(self):
-	return f'[{self.pk}]{self.title}' #pk=번호, 제목
+    def __str__(self):
+        return f'[{self.pk}]{self.title}' #pk=번호, 제목
 
 
-def get_absolute_url(self):
-    return f'/blog/tag/{self.slug}/' #글 상페 url 설정
+    def get_absolute_url(self):
+        return f'/blog/{self.pk}/' #글 상페 url 설정
