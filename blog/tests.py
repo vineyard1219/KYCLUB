@@ -81,17 +81,13 @@ class TestView(TestCase):
 
     def test_post_detail(self):
         # 1.1 포스트가 하나 있음
-        post_001 = Post.objects.create(
-            title='첫번째 포스트입니다.',
-            content='Hello World. We are the world.',
-        )
 
         # 1.2 그 포스트 url은'/blog/1/' 이다
-        self.assertEqual(post_001.get_absolute_url(), '/blog/1/')
+        self.assertEqual(self.post_001.get_absolute_url(), '/blog/1/')
 
         # 2. 첫번째 포스트 상세 페이지 테스트
         # 2.1 첫번째 포스트의 url로 접근하면 정상적으로 작동함(status code: 200)
-        response = self.client.get(post_001.get_absolute_url())
+        response = self.client.get(self.post_001.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -110,7 +106,7 @@ class TestView(TestCase):
 
         # 2.5 첫번째 포스트 작성자(author)가 포스트 영역에 있음(아직 구현 불가)
         self.assertIn(self.user_trump.username.upper(), post_area.text)
-        
+
         # 2.6 첫번째 포스트 내용(content)이 포스트 영역에 있음
         self.assertIn(post_001.content, post_area.text)
 
