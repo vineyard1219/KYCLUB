@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
+from django.contrib.auth.models import User
 from .models import Post
 
 # Create your tests here.
@@ -54,6 +55,7 @@ class TestView(TestCase):
         post_001 = Post.objects.create(
             title='첫번째 포스트입니다.',
             content='Hello World. We are the world.',
+            author=self.user_trump,
         )
 
         post_002 = Post.objects.create(
@@ -107,7 +109,8 @@ class TestView(TestCase):
         self.assertIn(post_001.title, post_area.text)
 
         # 2.5 첫번째 포스트 작성자(author)가 포스트 영역에 있음(아직 구현 불가)
-
+        self.assertIn(self.user_trump.username.upper(), post_area.text)
+        
         # 2.6 첫번째 포스트 내용(content)이 포스트 영역에 있음
         self.assertIn(post_001.content, post_area.text)
 
