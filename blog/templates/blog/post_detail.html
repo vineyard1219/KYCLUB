@@ -4,21 +4,20 @@
     
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-
-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>{{ post.title }} - Blog</title>
     
     <!-- 부트스트랩 css -->
-    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}"
-media="screen">
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
 
     <!-- 템플릿 css -->
-<link rel="stylesheet" href="{% static 'blog/css/blog-post.css' %}"
-media="screen">
-    </head>
+    <link rel="stylesheet" href="{% static 'blog/css/blog-post.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/2d8ffc394d.js" crossorigin="anonymous"></script> <!--아이콘-->
+</head>
+
 
     <body>
         <!--네비게이션바 시작-->
@@ -132,6 +131,34 @@ media="screen">
                         <!-- Post content-->
                         <section class="mb-5">
                          <p class="fs-5 mb-4">{{ post.content }}</p>
+                         
+                         {% if post.file_upload %} <!--파일 다운로드-->
+                         <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>
+                            Download:
+
+                            <!--다운로드시 확장자명-->
+                            {% if post.get_file_ext == 'csv' %}
+                                <i class="fa-solid fa-file-csv"></i>
+
+                            {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                <i class="fa-solid fa-file-excel"></i>
+
+                            {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                                <i class="fa-solid fa-file-word"></i>
+
+                            {% else %}
+                                <i class="fa-solid fa-file"></i>
+                            {% endif %}
+            
+                            {{ post.get_file_name }}
+
+                        </a>
+                         {% endif %}
+             
+                             {{ post.get_file_name }}
+                    
+             
+                         
                         </section>
                         <hr>
                     </article>
