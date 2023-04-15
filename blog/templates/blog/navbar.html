@@ -1,3 +1,5 @@
+{% load socialaccount %} <!--로그인 버튼 활성화-->
+
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">Navbar</a>
@@ -15,29 +17,29 @@
           <li class="nav-item">
             <a class="nav-link" href="/about_me/">About Me</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+          
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a class="nav-link disabled">@@</a>
           </li>
         </ul>
-        <ul class="navbar-nav">
+
+        <ul class="navbar-nav">  <!--로그인 모달 팝업 모션 추가-->
             <li class="nav-item">
-                
-                <!--로그인 모달 팝업 모션 추가-->
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a> 
-                
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/accounts/logout/">Log Out</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a> 
+                {% endif %}
             </li>
         </ul>
+
       </div>
     </div>
   </nav> 
@@ -55,11 +57,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="fa-brands fa-google"></i>&nbsp&nbsp Log in with Google</button>
-                        <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="fa-solid fa-envelope"></i>&nbsp&nbsp Log in with E-mail</button>
+                        <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'google' %}"><i class="fa-brands fa-google"></i>&nbsp&nbsp Log in with Google</button></a>
+                        <a type="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/login/"><i class="fa-solid fa-envelope"></i>&nbsp&nbsp Log in with Username</a>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="fa-solid fa-envelope"></i>&nbsp&nbsp Sign Up with E-mail</button>
+                        <a type="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/signup/"><i class="fa-solid fa-envelope"></i>&nbsp&nbsp Sign Up with E-mail</a>
                     </div>
                 </div>
             </div>
