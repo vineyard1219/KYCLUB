@@ -5,6 +5,7 @@
     <a class="btn btn-info btn-sm ml-auto" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;New Post</a>
     
     <h1>Blog
+        {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
         {% if category %}<span class="badge badge-secondary">{{ category }}</span>{% endif %}
         
     </h1>
