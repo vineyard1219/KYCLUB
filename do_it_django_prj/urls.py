@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
+    path('markdownx/', include('markdownx.urls')), #마크다운 적용
     path('', include('single_pages.urls')), #싱글페이지 앱 url 지정 /대문페이지
 ]
 

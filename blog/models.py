@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User #유저 추가
+from markdownx.models import MarkdownxField #마크다운 적용
+from markdownx.utils import markdown #마크다운 문법적용
 import os #다운로드 파일 이름 알려줌
 
 
@@ -20,7 +22,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=30) #제목(글,길이30)
     hook_text = models.CharField(max_length=100, blank=True) #요약문필드
-    content = models.TextField() #내용(글,무제한)
+    content = MarkdownxField() #내용(글,무제한)
     
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True) #블로그 밑에 이미지/연월일까지 내려간 위치에서 저장/필수항목 아님
     file_upload= models.FileField(upload_to='blog/images/%Y/%m/%d/', blank=True) #업로드 필드
@@ -44,3 +46,6 @@ class Post(models.Model):
 
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1] #다운로드 확장자 나타냄
+    
+    def get_content_markdown(self):
+        return markdown(self.content)	
