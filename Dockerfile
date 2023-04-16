@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+
 COPY . /usr/src/app/
 # install dependencies
 RUN pip install --upgrade pip
