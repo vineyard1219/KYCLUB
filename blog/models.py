@@ -50,6 +50,8 @@ class Post(models.Model):
     def get_content_markdown(self):
         return markdown(self.content)	
     
+    
+    
 
 class Comment(models.Model): #댓글
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

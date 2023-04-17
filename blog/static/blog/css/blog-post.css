@@ -557,6 +557,18 @@ progress {
   }
 }
 
+.display-7 {
+  font-size: calc(1.325rem + 1.2vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+@media (min-width: 1200px) {
+  .display-7 {
+    font-size: 2rem;
+  }
+}
+
 .list-unstyled {
   padding-left: 0;
   list-style: none;
@@ -2858,6 +2870,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #0d6efd;
   --bs-btn-disabled-border-color: #0d6efd;
+  
 }
 
 .btn-secondary {
@@ -4609,6 +4622,7 @@ textarea.form-control-lg {
   vertical-align: baseline;
   border-radius: var(--bs-badge-border-radius);
 }
+
 .badge:empty {
   display: none;
 }

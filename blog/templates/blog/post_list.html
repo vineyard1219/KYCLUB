@@ -1,66 +1,70 @@
 {% extends 'blog/base.html' %}
 
 {% block main_area %}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-info btn-sm ml-auto" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;New Post</a>
+            </div>
+        {% endif %}
+    {% endif %}
 
-    <a class="btn btn-info btn-sm ml-auto" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;New Post</a>
-    
-    <h1>Blog
+    <h1>
         {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
-        {% if category %}<span class="badge badge-secondary">{{ category }}</span>{% endif %}
-        
+        {% if category %}<span class="badge bg-secondary">{{ category }}</span>{% endif %}     
     </h1>
 
     {% if post_list.exists %}
         {% for p in post_list %}         
             <!-- Blog Post-->
             <div class="card mb-4" id="post-{{ p.pk }}">
-                    <div class="card-body">
-                        {% if p.category %}
-                            <span class="badge badge-secondary float-right">{{ p.category }}</span>
-                        {% else %}
-                            <span class="badge badge-secondary float-right">미분류</span>
-                        {% endif %}
-                        <h2 class="card-title">{{ p.title }}</h2>
-                        <h5 class="text-muted">{{ p.hook_text }}</h5>
-                        <p class="card-text">{{ p..get_content_markdown | truncatewords_html:45 | safe }}</p> <!--미리보기 45자 자르기-->
-                        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read more →</a>
+                <div class="card-body">
+                    {% if p.category %}
+                        <span class="badge bg-secondary mb-2">{{ p.category }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary mb-2">미분류</span>
+                    {% endif %}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="display-6 fs-3">{{ p.title }}</h2>
+                        <a href="{{ p.get_absolute_url }}" class="btn btn-outline-primary ">Read more →</a>
                     </div>
-
-                    <div class="card-footer text-muted">
-                        Posted on {{ p.created_at }} by
-                        <a href="#">{{ p.author | upper }}</a>
-                    </div>
+                    <!--<p class="d-inline-block">{{ p.get_content_markdown | truncatewords_html:45 | safe }}</p> -미리보기 45자 자르기-->
+                    <!--<h5 class="text-muted">{{ p.hook_text }}</h5>-->
                 </div>
-            {% endfor %}
-        {% else %}
-            <h3>아직 게시물이 없습니다.</h3>
-        {% endif %}
+                <div class="card-footer text-muted">
+                    Posted on {{ p.created_at }} by
+                    <a href="#">{{ p.author | upper }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>아직 게시물이 없습니다.</h3>
+    {% endif %}
          
-        {% if is_paginated %}
-        <!-- Pigination-->
+    {% if is_paginated %}
+        <!-- Pagination-->
         <nav aria-label="Pagination">
             <hr class="my-0" />
             <ul class="pagination justify-content-center my-4">
                 {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">&larr; Older</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&larr; New</a>
+                    </li>
                 {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&larr; Older</a>
-                </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&larr; New</a>
+                    </li>
                 {% endif %}
                 {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Newer &rarr;</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Older &rarr;</a>
+                    </li>
                 {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer &rarr;r</a>
-                </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Older &rarr;r</a>
+                    </li>
                 {% endif %}
             </ul>
         </nav>
-        
-        {% endif %}
-    {% endblock %}
+    {% endif %}
+{% endblock %}
