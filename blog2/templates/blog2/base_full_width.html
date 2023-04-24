@@ -2,21 +2,21 @@
 {% load static %}
 <html lang="ko">
 <head>
-    <title>{% block head_title %} KYCLUB {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <title>{% block head_title %} 총동아리연합회 {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog2/bootstrap/bootstrap.min.css' %}" media="screen">
         
     <script src="https://kit.fontawesome.com/2d8ffc394d.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrap">
-        {% include 'blog/navbar.html' %}    
+        {% include 'blog2/navbar.html' %}    
             
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="display-5">자료실</h1>
-                    <p class="lead mb-0">~ 자료 다운로드는 여기서 ~</p>
+                    <h1 class="display-5">활동</h1>
+                    <p class="lead mb-0">~ 활동은 여기에 업로드 ~</p>
                 </div>
             </div>
         </header>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <!-- Footer-->
-        {% include 'blog/footer.html' %}
+        {% include 'blog2/footer.html' %}
                 
                 <!--부트 자바 jsDelivr -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

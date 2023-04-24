@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('blog/', include('blog.urls')),
+    path('blog2/', include('blog2.urls')),
     path('admin/', admin.site.urls),
     path('markdownx/', include('markdownx.urls')), #마크다운 적용
     path('accounts/', include('allauth.urls')), #회원가입 적용
@@ -29,4 +30,3 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #미디어url 지정
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #미디어url 지정

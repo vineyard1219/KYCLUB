@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>{% block head_title %} Blog {% endblock %}</title>
+    <title>{% block head_title %} KYCLUB {% endblock %}</title>
     
     <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}"
     media="screen">
@@ -12,47 +12,24 @@
         <script src="https://kit.fontawesome.com/2d8ffc394d.js" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+    <div class="wrap">
+        {% include 'blog/navbar.html' %}
 
-{% include 'blog/navbar.html' %}
-
-<section>
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-lg-6 color-contrast-dark">
-                <h1 class="mt-5 display-5">Do It Django</h1>
-                <p>파이썬 진영의 가장 대표적인 웹프레임워크 중 하나인 django를 이용하여 여러분만의 블로그 사이트를 만들어보세요.</p>
-            </div>
-
-            <div class="col-lg-5 mt-5">
-                <h2 class="color-contrast-dark display-6">Blog - Recent posts</h2>
-                {% for post in recent_posts %}
-                    <div class="card mt-1">
-                        <div class="card-body">
-                            <h6><a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark">{{ post.title }}</a></h6>
-                            <span class="badge badge-pill badge-light float-right">
-                                <img class="mr-1 rounded-circle" width="20px" src="{{ post.get_avatar_url }}" alt="{{ post.author }}">
-                                {{ post.author.username }}
-                                &nbsp;
-                                &nbsp;
-                                {{ post.created_at }}
-                           </span>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-        </div>
+        <section>
+            </section>
+        <section>
+            </section>
     </div>
-</section>
+            
 
-<div class="fixed-bottom">
-    {% include 'blog/footer.html' %}
-</div>
-<!--부트 자바 jsDelivr -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-<!--부트 자바 jsDelivr 끝-->
-
+        <div class="fixed-bottom"></div>
+            {% include 'blog/footer.html' %}
+        </div>
+        <!--부트 자바 jsDelivr -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <!--부트 자바 jsDelivr 끝-->
+    </div>
 </body>
 </html>

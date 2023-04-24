@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog2/base.html' %}
 {% load crispy_forms_tags %}
 
 {% block head_title %}
@@ -7,7 +7,7 @@
 
 {% block main_area %}
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-info btn-sm float-right" href="/blog/update_post/{{ post.pk }}/" role="button"><i class="fas fa-pen"></i>  Edit Post</a>
+        <a class="btn btn-info btn-sm float-right" href="/blog2/update_post/{{ post.pk }}/" role="button"><i class="fas fa-pen"></i>  Edit Post</a>
     </div>
 
     <div id="post-area"> 
@@ -100,10 +100,10 @@
                             <a role="button"
                                 class="btn btn-sm btn-info"
                                 id="comment-{{ comment.pk }}-update-btn"
-                                href="/blog/update_comment/{{ comment.pk }}/">
+                                href="/blog2/update_comment/{{ comment.pk }}/">
                                 edit
                             </a>
-                            <form action="/blog/delete_comment/{{ comment.pk }}/" method="POST" class="d-inline-block">
+                            <form action="/blog2/delete_comment/{{ comment.pk }}/" method="POST" class="d-inline-block">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this comment?')">delete</button>
                             </form>

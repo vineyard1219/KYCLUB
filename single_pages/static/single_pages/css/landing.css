@@ -1,9 +1,10 @@
 body {
-    background: url('/static/single_pages/images/hero-bg.png') no-repeat center center fixed;
+    background: url('/static/single_pages/images/bg.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -moz-background-size: cover;
+    height: 100%;
 }
 
 section {
@@ -13,3 +14,14 @@ section {
 .card {
     background-color: rgba(255, 255, 255, 0.6);
 }
+
+wrap {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 114px;
+  }
+  
+  .footer {
+    position: absolute;
+    bottom: 0;
+  }
