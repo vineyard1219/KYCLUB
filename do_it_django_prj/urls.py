@@ -30,3 +30,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #미디어url 지정
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,24 @@
+body {
+    background: url('/static/single_pages/images/bg_2.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    height: 100%;
+    
+}
+  
+html {
+  height: 100%
+}
+
+#wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.footer {
+  position: relative;
+  transform: translatY(-100%);
+}
